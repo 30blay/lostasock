@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <li><a>sock {{ sock.id }}</a></li>
+  <img src="{{ sock.image.url }}" height="300" width="300" >
+  <ul>
+  {% for otherSock in sortedSocks %}
+      <li><a href="/matcher/{{ otherSock.id }}/">{{ otherSock.id }}</a></li>
+      <img src="{{ otherSock.image.url }}" height="150" width="150" >
+  {% endfor %}
+  </ul>
+{% endblock %}

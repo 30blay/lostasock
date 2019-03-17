@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <a href="{% url 'add_sock' %}" class="btn btn-primary ml-2">Add a sock</a>
+  {% if sock_list %}
+      <ul>
+      {% for sock in sock_list %}
+          <li><a href="/matcher/{{ sock.id }}/">{{ sock.id }}</a></li>
+          <img src="{{ sock.image.url }}" height="150" width="150" >
+      {% endfor %}
+      </ul>
+  {% else %}
+      <p>There are no socks here.</p>
+  {% endif %}
+{% endblock %}
+
