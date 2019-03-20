@@ -2,16 +2,19 @@
 {% load static %}
 
 {% block content %}
-  <a href="{% url 'add_sock' %}" class="btn btn-primary ml-2">Add a sock</a>
+  <a href="{% url 'add_sock' %}" class="btn btn-primary" style="width: 18rem;">Add a sock</a>
   {% if sock_list %}
-      <ul>
+
       {% for sock in sock_list %}
-          <li><a href="/matcher/{{ sock.id }}/">{{ sock.id }}</a></li>
-          <img src="{{ sock.image.url }}" height="150" width="150" >
+        <div class="card text-right" style="width: 18rem; margin-top: 0.25rem;">
+          <img class="card-img-top" src="{{ sock.image.url }}" alt="Card image cap">
+          <div class="card-img-overlay">
+            <a href="/matcher/{{ sock.id }}/delete_sock " class="btn btn-outline-danger btn-sm">delete</a>
+          </div>
+        </div>
       {% endfor %}
-      </ul>
   {% else %}
-      <p>There are no socks here.</p>
+      <p>You have no socks. You must be new here.</p>
   {% endif %}
 {% endblock %}
 

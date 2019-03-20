@@ -29,6 +29,13 @@ def add_sock(request):
     })
 
 
+def delete_sock(request, sock_id):
+    print(sock_id)
+    object = get_object_or_404(Sock, pk=sock_id)
+    object.delete()
+    return redirect('my_socks')
+
+
 def detail(request, sock_id):
     sock = get_object_or_404(Sock, pk=sock_id)
     allsocks = Sock.objects.exclude(pk=sock_id)
