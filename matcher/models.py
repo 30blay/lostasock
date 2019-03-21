@@ -16,16 +16,5 @@ class Sock(models.Model):
         distance = norm(thisFeatures - otherFeatures)
         return distance
 
-    def save(self, force_insert=False, force_update=False, using=None,
-             update_fields=None):
-        #save the image first
-        super(Sock, self).save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
-
-        features = extract_features(self.image.url)
-        features = features.tolist()  # nested lists with same data, indices
-        self.features = json.dumps(features)
-
-        super(Sock, self).save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
-
     def __str__(self):
         return self.image.url

@@ -6,3 +6,7 @@ media/static/gallery
 \.venv/
 
 sqlite3\.db
+
+matcher/__pycache__/
+
+mysite/__pycache__/
