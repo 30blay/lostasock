@@ -10,10 +10,10 @@ class Command(BaseCommand):
         while True:
             todo = Sock.objects.filter(features="")
             if not todo:
-                print("Nothing to do")
+                print("Nothing to do", flush=True)
                 sleep(2)
             else:
-                print('Extracting features for ' + str(len(todo)) + ' images')
+                print('Extracting features for ' + str(len(todo)) + ' images', flush=True)
 
             for sock in todo:
                 y = extract_features(sock.image.url)
