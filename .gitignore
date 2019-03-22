@@ -1,3 +1,14 @@
+*/*/*/__pycache__/
+
+*/*/__pycache__/
+
+*/__pycache__/
+
+*.log
+
+*.pot
+
+*.pyc
 
 env/
 
@@ -7,8 +18,3 @@ media/static/gallery
 
 sqlite3\.db
 
-matcher/__pycache__/
-
-mysite/__pycache__/
-
-matcher/management/commands/__pycache__/
