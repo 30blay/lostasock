@@ -5,6 +5,7 @@ import json
 import numpy as np
 from django.contrib.auth.models import User
 
+
 class Sock(models.Model):
     features = models.TextField()
     image = models.ImageField(null=True, upload_to="static/gallery/")

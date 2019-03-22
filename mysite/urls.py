@@ -10,6 +10,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('signup/', accounts_views.signup, name='signup'),
     path('my_socks/', views.my_socks, name='my_socks'),
+    path('my_matches/', views.my_matches, name='my_matches'),
     path('accounts/', include('accounts.urls')),
     path('matcher/', include('matcher.urls')),
     path('admin/', admin.site.urls),

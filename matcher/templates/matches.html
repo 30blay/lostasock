@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  {% if match_list %}
+
+      {% for match in match_list %}
+        <div class="card mb-3" style="width: 18rem; margin-top: 0.25rem;">
+          <div class="row no-gutters">
+            <div class="col-md-6">
+              <img src="{{ match.sock1.image.url }}" class="card-img" alt="No image">
+            </div>
+            <div class="col-md-6">
+              <img src="{{ match.sock2.image.url }}" class="card-img" alt="No image">
+            </div>
+          </div>
+          <p>Distance : {{ match.distance }}</p>
+          {% if match.sock1.owner == user %}
+            <p>{{ match.sock2.owner.email }}</p>
+          {% else %}
+            <p>{{ match.sock1.owner.email }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+  {% else %}
+      <p>You have no matches. You socks are truly unique.</p>
+  {% endif %}
+{% endblock %}
+

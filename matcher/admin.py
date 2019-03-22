@@ -10,4 +10,5 @@ class SockAdmin(admin.ModelAdmin):
 
 @admin.register(Match)
 class MatchAdmin(admin.ModelAdmin):
-    readonly_fields = ["distance"]
+    readonly_fields = []
+    #readonly_fields = ["distance"]

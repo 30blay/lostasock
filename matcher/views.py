@@ -1,8 +1,10 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.db.models import Q
 from .forms import SockForm
 
-from .models import Sock
+from .models import Sock, Match
 
 
 @login_required
@@ -12,6 +14,16 @@ def my_socks(request):
         'sock_list': sock_list,
     }
     return render(request, 'index.html', context)
+
+
+@login_required
+def my_matches(request):
+    match_list = Match.objects.filter(Q(sock1__owner=request.user.id) | Q(sock2__owner=request.user.id))
+
+    context = {
+        'match_list': match_list,
+    }
+    return render(request, 'matches.html', context)
 
 
 def add_sock(request):
