@@ -10,7 +10,6 @@ class Command(BaseCommand):
         while True:
             todo = Sock.objects.filter(features="")
             if not todo:
-                print("Nothing to do", flush=True)
                 sleep(2)
             else:
                 print('Extracting features for ' + str(len(todo)) + ' images', flush=True)
