@@ -1,3 +1,4 @@
+__pycache__/
 
 env/
 
@@ -7,8 +8,3 @@ media/static/gallery
 
 sqlite3\.db
 
-matcher/__pycache__/
-
-mysite/__pycache__/
-
-matcher/management/commands/__pycache__/
