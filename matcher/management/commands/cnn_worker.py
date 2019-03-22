@@ -23,7 +23,7 @@ class Command(BaseCommand):
                 sock.save()
 
             # find matches for new socks
-            allsocks = Sock.objects.all()
+            allsocks = Sock.objects.exclude(features="")
             for sock in todo:
                 for othersock in allsocks:
                     if sock == othersock:

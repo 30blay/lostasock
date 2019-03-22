@@ -11,10 +11,12 @@ class Sock(models.Model):
     image = models.ImageField(null=True, upload_to="static/gallery/")
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    def distance(self, otherSock):
-        thisFeatures = np.array(json.loads(self.features))
-        otherFeatures = np.array(json.loads(otherSock.features))
-        distance = norm(thisFeatures - otherFeatures)
+    def distance(self, other_sock):
+        if not self.features or not other_sock.features:
+            raise Exception("Features were not calculated yet for this sock")
+        this_feature = np.array(json.loads(self.features))
+        other_feature = np.array(json.loads(other_sock.features))
+        distance = norm(this_feature - other_feature)
         return distance
 
     def __str__(self):
