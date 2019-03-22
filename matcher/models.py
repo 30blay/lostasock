@@ -18,3 +18,12 @@ class Sock(models.Model):
 
     def __str__(self):
         return self.image.url
+
+
+class Match(models.Model):
+    sock1 = models.ForeignKey(Sock, related_name="sock1", on_delete=models.CASCADE)
+    sock2 = models.ForeignKey(Sock, related_name="sock2", on_delete=models.CASCADE)
+    distance = models.FloatField()
+
+    def __str__(self):
+        return str(self.pk)
