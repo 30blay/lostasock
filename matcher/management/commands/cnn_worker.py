@@ -11,25 +11,22 @@ class Command(BaseCommand):
             todo = Sock.objects.filter(features="")
             if not todo:
                 sleep(2)
-            else:
-                print('Extracting features for ' + str(len(todo)) + ' images', flush=True)
+                continue
+
+            print(str(len(todo)) + ' images are pending extraction', flush=True)
 
             # extract features for new socks
-            for sock in todo:
-                y = extract_features(sock.image.url)
-                y = y.tolist()  # nested lists with same data, indices
-                sock.features = json.dumps(y)
-                sock.save()
+            sock = todo[0]
+            done_socks = Sock.objects.exclude(features="")
+            y = extract_features(sock.image.url)
+            sock.features = json.dumps(y.tolist())
+            sock.save()
 
             # find matches for new socks
-            allsocks = Sock.objects.exclude(features="")
-            for sock in todo:
-                for othersock in allsocks:
-                    if sock == othersock:
-                        continue
-                    distance = sock.distance(othersock)
-                    threshold = 999
-                    if distance < threshold:
-                        match = Match(sock1=sock, sock2=othersock, distance=distance)
-                        match.save()
-                        print("Found a match!", flush=True)
+            for other_sock in done_socks:
+                distance = sock.distance(other_sock)
+                threshold = 999
+                if distance < threshold:
+                    match = Match(sock1=sock, sock2=other_sock, distance=distance)
+                    match.save()
+                    print("Found a match!", flush=True)
