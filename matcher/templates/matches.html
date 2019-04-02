@@ -14,7 +14,7 @@
               <img src="{{ match.sock2.image.url }}" class="card-img" alt="No image">
             </div>
           </div>
-          <p>Distance : {{ match.distance }}</p>
+          <p>Similarity : {{ match.similarity }}</p>
           {% if match.sock1.owner == user %}
             <p>{{ match.sock2.owner.email }}</p>
           {% else %}

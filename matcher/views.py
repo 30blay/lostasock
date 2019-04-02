@@ -51,8 +51,8 @@ def delete_sock(request, sock_id):
 def detail(request, sock_id):
     sock = get_object_or_404(Sock, pk=sock_id)
     allsocks = Sock.objects.exclude(pk=sock_id)
-    sortedSocks = sorted(allsocks, key=lambda i: sock.distance(i))
-    distances = [sock.distance(i) for i in sortedSocks]
+    sortedSocks = sorted(allsocks, key=lambda i: sock.similarity(i))
+    distances = [sock.similarity(i) for i in sortedSocks]
     print(distances)
     context = {
         'sock': sock,

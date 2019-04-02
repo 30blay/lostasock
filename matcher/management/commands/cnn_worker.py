@@ -24,9 +24,9 @@ class Command(BaseCommand):
 
             # find matches for new socks
             for other_sock in done_socks:
-                distance = sock.distance(other_sock)
-                threshold = 999
-                if distance < threshold:
-                    match = Match(sock1=sock, sock2=other_sock, distance=distance)
+                similarity = sock.similarity(other_sock)
+                threshold = 0.43
+                if similarity > threshold:
+                    match = Match(sock1=sock, sock2=other_sock, similarity=similarity)
                     match.save()
                     print("Found a match!", flush=True)
