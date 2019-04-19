@@ -18,3 +18,5 @@ media/static/gallery
 
 sqlite3\.db
 
+
+matcher/migrations/
