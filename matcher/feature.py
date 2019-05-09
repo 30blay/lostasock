@@ -26,8 +26,5 @@ def extract_features(img_path):
 
 def get_similarity(feature1, feature2):
     siamese = get_siamese()
-    APP_ROOT = os.path.dirname(os.path.realpath(__file__))
-    weights_path = os.path.join(APP_ROOT, "model_weights.h5")
-    siamese.load_weights(weights_path)
     similarity = siamese.predict([feature1, feature2])
     return similarity[0][0]

@@ -27,7 +27,7 @@ class Command(BaseCommand):
                 if other_sock == sock: # never match a sock to itself
                     continue
                 similarity = sock.similarity(other_sock)
-                threshold = 0.3
+                threshold = 0.25
                 if similarity > threshold:
                     match = Match(sock1=sock, sock2=other_sock, similarity=similarity)
                     match.save()
