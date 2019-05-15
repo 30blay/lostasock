@@ -1,3 +1,3 @@
-# Biped
+# Lostasock
 
-Biped is a website allowing people who have lost the same sock to find each other.
+Lostasock is a website allowing people who have lost the same sock to find each other!
