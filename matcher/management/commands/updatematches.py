@@ -2,6 +2,7 @@ from matcher.models import Sock, Match
 from django.core.management.base import BaseCommand
 import itertools
 
+
 class Command(BaseCommand):
     def handle(self, *args, **options):
         # delete all existing matches

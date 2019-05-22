@@ -4,6 +4,7 @@ from numpy.linalg import norm
 import json
 import numpy as np
 from django.contrib.auth.models import User
+from PIL import Image
 
 
 class Sock(models.Model):
@@ -18,6 +19,13 @@ class Sock(models.Model):
         other_feature = np.array(json.loads(other_sock.features))
         distance = get_similarity(this_feature, other_feature)
         return distance
+
+    # save with compression
+    def save(self, *args, **kwargs):
+        instance = super(Sock, self).save(*args, **kwargs)
+        if self.image:
+            image_file = Image.open(self.image.path)
+            image_file.save(self.image.path, quality=20, optimize=True)
 
     def __str__(self):
         return self.image.url
