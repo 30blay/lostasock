@@ -1,17 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% load static %}
 
 <div class="row justify-content-center">
     <div class="col-lg-4 col-md-6 col-sm-8">
       <div class="card">
         <div class="card-body">
           <h3 class="card-title">Upload a sock</h3>
+          <p>Take a picture of your sock on a <b>white</b> background, with the following orientation:</p>
+          <img src="{% static "/sock_orient.PNG" %}" alt="Sock orientation" class="img-fluid"/>
           <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary btn-block">Upload</button>
-            <a href="{% url 'my_socks' %}">Return to my socks</a>
+            <input type="file" name="image" accept="image/*" required="" id="id_image">
+            <button type="submit" class="btn btn-primary btn-block mt-2">Upload</button>
           </form>
         </div>
       </div>

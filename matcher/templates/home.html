@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>Homepage</h2>
-    <p>Hello, {% if user.is_authenticated %}{{ user.username }}{% else %}visitor{% endif %}! </p>
+    <p>Hello, {% if user.is_authenticated %}{{ user.username }}{% else %}visitor{% endif %}! Have you lost a sock?</p>
     <strong>{{ sockCount }} socks are currently looking for their partner </strong>
 {% endblock %}
