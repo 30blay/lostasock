@@ -27,6 +27,7 @@ SECRET_KEY = yamjam()['biped']['django_secret_key']
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    'www.lostasock.com',
     'biped.pythonanywhere.com',
     '127.0.0.1',
 ]
