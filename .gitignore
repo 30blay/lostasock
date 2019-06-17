@@ -20,3 +20,5 @@ sqlite3\.db
 
 
 matcher/migrations/
+
+\.siteenv/
