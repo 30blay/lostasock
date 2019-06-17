@@ -1,6 +1,5 @@
 from django.db import models
-from .feature import extract_features, get_similarity
-from numpy.linalg import norm
+from .feature import get_similarity
 import json
 import numpy as np
 from django.contrib.auth.models import User
@@ -11,6 +10,7 @@ class Sock(models.Model):
     features = models.TextField()
     image = models.ImageField(null=True, upload_to="static/gallery/")
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def similarity(self, other_sock):
         if not self.features or not other_sock.features:
@@ -35,6 +35,7 @@ class Match(models.Model):
     sock1 = models.ForeignKey(Sock, related_name="sock1", on_delete=models.CASCADE)
     sock2 = models.ForeignKey(Sock, related_name="sock2", on_delete=models.CASCADE)
     similarity = models.FloatField()
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return str(self.pk)
