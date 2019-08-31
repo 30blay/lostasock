@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% load static %}
     <p>Hello, {% if user.is_authenticated %}{{ user.username }}{% else %}visitor{% endif %}! Have you lost a sock?</p>
     <strong>{{ sockCount }} socks are currently looking for their partner </strong>
+    <p>Lostasock allows you to find users who have lost the same sock as you, and make pairs out of lonely socks!</p>
+    <img src="{% static "/Home_Animation.gif" %}" alt="Home animation" class="img-fluid"/>
 {% endblock %}
