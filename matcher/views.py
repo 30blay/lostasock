@@ -19,7 +19,7 @@ def my_socks(request):
 @login_required
 def my_matches(request):
     match_list = Match.objects.filter(Q(sock1__owner=request.user.id) | Q(sock2__owner=request.user.id))
-
+    match_list = match_list.order_by('-similarity')
     context = {
         'match_list': match_list,
     }
