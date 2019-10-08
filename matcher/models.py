@@ -22,10 +22,15 @@ class Sock(models.Model):
 
     # save with compression
     def save(self, *args, **kwargs):
-        instance = super(Sock, self).save(*args, **kwargs)
-        if self.image:
-            image_file = Image.open(self.image.path)
-            image_file.save(self.image.path, quality=20, optimize=True)
+        if not self.pk:
+            # the sock is new -> Compress it's image
+            # first save the sock with original image so that we have it on file
+            super(Sock, self).save(*args, **kwargs)
+            if self.image:
+                image_file = Image.open(self.image.path)
+                image_file.save(self.image.path, quality=20, optimize=True)
+        else:
+            super(Sock, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.image.url
