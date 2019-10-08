@@ -20,6 +20,8 @@ def my_socks(request):
 def my_matches(request):
     match_list = Match.objects.filter(Q(sock1__owner=request.user.id) | Q(sock2__owner=request.user.id))
     match_list = match_list.order_by('-similarity')
+    n_matches_max = 10
+    match_list = match_list[:n_matches_max]
     context = {
         'match_list': match_list,
     }
