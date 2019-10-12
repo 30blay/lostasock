@@ -8,8 +8,7 @@
       <div class="card">
         <div class="card-body">
           <h3 class="card-title">Upload a sock</h3>
-          <p>Take a picture of your sock on a <b>white</b> background, with the following orientation:</p>
-          <img src="{% static "/sock_orient.PNG" %}" alt="Sock orientation" class="img-fluid"/>
+          <p>Take a picture of your sock on a plain background</p>
           <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <input type="file" name="image" accept="image/*" required="" id="id_image">
