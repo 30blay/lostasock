@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
 
     'accounts',
+    'background_task',
 
     'matcher.apps.MatcherConfig',
 ]

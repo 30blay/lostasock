@@ -7,3 +7,4 @@ Theano==1.0.4
 virtualenv==16.2.0
 yamjam==0.1.7
 scikit-image==0.15.0
+django-background-tasks==1.2.0

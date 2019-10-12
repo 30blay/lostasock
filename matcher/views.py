@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from .tasks import find_matches
 from django.db.models import Q
 from .forms import SockForm
 
@@ -35,6 +35,7 @@ def add_sock(request):
             new_sock = form.save(commit=False)
             new_sock.owner_id = request.user.id
             new_sock.save()
+            find_matches(new_sock.id)
             return redirect('my_socks')
     else:
         form = SockForm()
