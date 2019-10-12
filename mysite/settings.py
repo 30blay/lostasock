@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
     'crispy_forms',
     'widget_tweaks',
+    'django_cleanup',  # delete image files when object with imageField gets deleted
 
     'accounts',
     'background_task',
