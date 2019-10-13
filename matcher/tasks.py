@@ -7,9 +7,7 @@ import json
 @background(schedule=0)
 def find_matches(sock_id):
     sock = Sock.objects.get(pk=sock_id)
-    y = extract_features(sock.image.url)
-    sock.features = json.dumps(y.tolist())
-    sock.save()
+    sock.update_features()
 
     done_socks = Sock.objects.exclude(features="")
     # find matches for new socks

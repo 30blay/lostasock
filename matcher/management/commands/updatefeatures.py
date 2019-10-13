@@ -9,6 +9,4 @@ class Command(BaseCommand):
         allsocks = Sock.objects.all()
         print('Extracting features for ' + str(len(allsocks)) + ' images')
         for sock in allsocks:
-            y = extract_features(sock.image.url)
-            sock.features = json.dumps(y.tolist())
-            sock.save()
+            sock.update_features()
