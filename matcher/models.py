@@ -1,16 +1,34 @@
 from django.db import models
-from .feature import get_similarity
+from .feature import get_similarity, extract_features
 import json
 import numpy as np
 from django.contrib.auth.models import User
+from django.core.files.uploadedfile import InMemoryUploadedFile
+from io import StringIO, BytesIO
+from django.core.files.base import ContentFile
 from PIL import Image
 
 
 class Sock(models.Model):
     features = models.TextField()
     image = models.ImageField(null=True, upload_to="static/gallery/")
+    isolated_image = models.ImageField(null=True, upload_to="static/gallery/")
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def update_features(self):
+        features, isolated = extract_features(self.image.url, return_isolated=True)
+        self.features = json.dumps(features.tolist())
+
+        isolated = np.uint8(isolated)
+        pil_image = Image.fromarray(isolated)
+        f = BytesIO()
+        try:
+            pil_image.save(f, format='png')
+            self.isolated_image.save(f'{self.id}.png', ContentFile(f.getvalue()))
+        finally:
+            f.close()
+        self.save()
 
     def similarity(self, other_sock):
         if not self.features or not other_sock.features:

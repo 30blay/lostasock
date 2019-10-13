@@ -11,14 +11,24 @@ admin.site.index_title = 'Home'
 class SockAdmin(admin.ModelAdmin):
     readonly_fields = ["features",
                        "image_render",
+                       "isolated_render",
                        ]
     date_hierarchy = 'created_at'
-    list_display = ('image_render', 'created_at', 'owner')
-    fields = ('image_render',)
+    list_display = ('image_render', 'isolated_render', 'created_at', 'owner')
+    fields = ('image_render', 'isolated_render', 'owner')
 
     def image_render(self, obj):
         return mark_safe('<img src="{url}" width="{width}" height={height} />'.format(
             url=obj.image.url,
+            width=100,
+            height=100,
+            ))
+
+    def isolated_render(self, obj):
+        if not obj.isolated_image:
+            return ''
+        return mark_safe('<img src="{url}" width="{width}" height={height} />'.format(
+            url=obj.isolated_image.url,
             width=100,
             height=100,
             ))
